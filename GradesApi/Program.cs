@@ -1,3 +1,7 @@
+using GradesApi.Interfaces;
+using GradesApi.Repositories;
+using GradesApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +16,10 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
+// Register repository and service
+builder.Services.AddSingleton<IGradeRepository, GradeRepository>();
+builder.Services.AddSingleton<IGradeService, GradeService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
